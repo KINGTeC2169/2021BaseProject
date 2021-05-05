@@ -6,8 +6,14 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
+import com.revrobotics.CANSparkMaxLowLevel;
+import frc.robot.Controls;
+import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.PWMSparkMax;
+import edu.wpi.first.wpilibj.Joystick;
+import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +29,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    System.out.println("robotInit function Test");
+
   }
 
   @Override
@@ -39,10 +47,37 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    System.out.println("TeleopInit Test");
   }
 
   @Override
   public void teleopPeriodic() {
+    System.out.println("TeleopPeriodic Test");
+    Joystick leftJoy = new Joystick(0);
+    Joystick rightJoy = new Joystick(1);
+
+    CANSparkMax sparkMax1 = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
+    CANSparkMax sparkMax2 = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
+    CANSparkMax sparkMax3 = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
+    CANSparkMax sparkMax4 = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
+    CANSparkMax sparkMax5 = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
+    CANSparkMax sparkMax6 = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushless);
+    CANSparkMax sparkMax7 = new CANSparkMax(7, CANSparkMaxLowLevel.MotorType.kBrushless);
+    CANSparkMax sparkMax8 = new CANSparkMax(8, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+    double speed = -leftJoy.getRawAxis(1) * 0.6;
+    double turn = rightJoy.getRawAxis(2) * 0.3;
+    double left = speed + turn;
+    double right = speed - turn;
+
+    sparkMax1.set(left);
+    sparkMax2.set(left);
+    sparkMax3.set(left);
+    sparkMax4.set(left);
+    sparkMax5.set(left);
+    sparkMax6.set(left);
+    sparkMax7.set(left);
+    sparkMax8.set(left);
   }
 
   @Override
